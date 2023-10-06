@@ -33,23 +33,36 @@
 #include "CResource.h"
 #include "CResourceTag.h"
 #include "CVisualDescription.h"
+#include "ResourceServer.h"
 #include "core/object/class_db.h"
 
 //#include "colony_resourcesClass.h"
 
-void initialize_colony_resources_module(ModuleInitializationLevel p_level) {
-	if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
-		return;
-	}
-	ClassDB::register_class<CVisualDescription>();
-	ClassDB::register_class<CDescription>();
-	ClassDB::register_class<CResource>();
-	ClassDB::register_class<CResourceTag>();
+void initialize_colony_resources_module(ModuleInitializationLevel p_level)
+{
+    if (p_level == MODULE_INITIALIZATION_LEVEL_CORE)
+    {
+        ClassDB::register_class<CVisualDescription>();
+        ClassDB::register_class<CDescription>();
+        ClassDB::register_class<CResource>();
+        ClassDB::register_class<CResourceTag>();
+        ClassDB::register_class<CResourceCount>();
+        ClassDB::register_class<CResourceCountList>();
+        ClassDB::register_class<ColonyResourceServer>();
+    }
+
+    if (p_level == MODULE_INITIALIZATION_LEVEL_SERVERS)
+    {
+        resourceServer = memnew(ColonyResourceServer);
+        Engine::get_singleton()->add_singleton(Engine::Singleton("GetColonyResourceServer", ColonyResourceServer::get_singleton()));
+    }
 }
 
-void uninitialize_colony_resources_module(ModuleInitializationLevel p_level) {
-	if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
-		return;
-	}
-	// Nothing to do here in this example.
+void uninitialize_colony_resources_module(ModuleInitializationLevel p_level)
+{
+    if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE)
+    {
+        return;
+    }
+    // Nothing to do here in this example.
 }

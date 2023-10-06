@@ -2,6 +2,7 @@
 
 #include "core/io/resource.h"
 
+/// \brief Common pool of text descriptions to be used by UI elements.
 class CDescription : public Resource
 {
 public:
@@ -18,11 +19,16 @@ private:
     String resource_name;
     String short_description;
     String full_description;
-    
+
 protected:
     static void _bind_methods();
 
 public:
-    CDescription() {};
-    ~CDescription() {};
+    CDescription()
+    {
+    };
+
+    ~CDescription() override
+    {
+    };
 };

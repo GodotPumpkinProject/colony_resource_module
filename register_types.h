@@ -31,7 +31,10 @@
 #ifndef COLONY_RESOURCES_REGISTER_TYPES_H
 #define COLONY_RESOURCES_REGISTER_TYPES_H
 
+#include "ResourceServer.h"
 #include "modules/register_module_types.h"
+
+static ColonyResourceServer* resourceServer;
 
 void initialize_colony_resources_module(ModuleInitializationLevel p_level);
 void uninitialize_colony_resources_module(ModuleInitializationLevel p_level);

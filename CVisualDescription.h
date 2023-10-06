@@ -4,7 +4,7 @@
 #include "core/io/resource.h"
 #include "scene/resources/texture.h"
 
-
+/// \brief Adds UI graphics.
 class CVisualDescription : public CDescription
 {
     GDCLASS(CVisualDescription, CDescription);
@@ -18,9 +18,11 @@ protected:
     static void _bind_methods();
 
 public:
-    
-    CVisualDescription() {};
-    ~CVisualDescription() {};
-    
-};
+    CVisualDescription()
+    {
+    };
 
+    ~CVisualDescription() override
+    {
+    };
+};

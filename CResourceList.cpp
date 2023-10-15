@@ -19,11 +19,25 @@ TypedArray<CResourceCount> CResourceCountList::get_resources() const
     return returnList;
 }
 
-void CResourceCountList::set_resources(const TypedArray<CResourceCount>& resourceList)
+void CResourceCountList::set_resources(const TypedArray<CResourceCount> resourceList)
 {
     this->resources = {};
     for (int i = 0; i < resourceList.size(); ++i)
     {
         this->resources.append(resourceList[i]);
     }
+}
+
+void CResourceCountList::add_resource(const Ref<CResourceCount> addResource)
+{
+    for (auto r : this->resources)
+    {
+        if (r->get_resource() == addResource->get_resource())
+        {
+            r->add_count(r->get_count());
+            return;
+        }
+        
+    }
+    this->resources.append(addResource);
 }

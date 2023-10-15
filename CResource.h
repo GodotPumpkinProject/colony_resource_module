@@ -14,6 +14,8 @@ class CResource : public CVisualDescription
     /// \brief List of tags associated with this resource.
     TypedArray<CResourceTag> tags;
 
+    Ref<CResource> parentResource;
+    
 protected:
     static void _bind_methods();
 
@@ -21,6 +23,8 @@ public:
     TypedArray<CResourceTag> get_tags() const;
     void set_tags(const TypedArray<CResourceTag>& tags_);
 
+    Ref<CResource> GetParentResource(){return this->parentResource;}
+    void SetParentResource(const Ref<CResource> newParentResource){ this->parentResource = newParentResource;}
     CResource()
     {
     };
@@ -47,36 +51,26 @@ public:
     void set_count(const int c) { count = c; }
 
     Ref<CResource> get_resource() { return resource; }
-    void set_resource(const Ref<CResource>& r) { resource = r; }
+    
+    void set_resource(const Ref<CResource> r) { resource = r; }
 
+    void add_count(int addCount){this->count += addCount;}
 
-    // Common assignments
+    void add_count(CResourceCount r){ this->count += r.get_count();}
+    
+//     Common assignments
     CResourceCount operator +=(const CResourceCount& b) const
     {
         assert(this->resource == b.resource);
         return CResourceCount(this->resource, this->count + b.count);
     }
-
+    
     CResourceCount operator -=(const CResourceCount& b) const
     {
         assert(this->resource == b.resource);
         return CResourceCount(this->resource, this->count + b.count);
     }
 
-    CResourceCount operator *=(const int b) const
-    {
-        return CResourceCount(this->resource, this->count * b);
-    }
-
-    CResourceCount operator +=(const int b) const
-    {
-        return CResourceCount(this->resource, this->count + b);
-    }
-
-    CResourceCount operator -=(const int b) const
-    {
-        return CResourceCount(this->resource, this->count - b);
-    }
 
     CResourceCount()
     {

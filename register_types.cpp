@@ -30,6 +30,7 @@
 
 #include "register_types.h"
 
+#include "CJobRole.h"
 #include "CResource.h"
 #include "CResourceTag.h"
 #include "CVisualDescription.h"
@@ -49,6 +50,8 @@ void initialize_colony_resources_module(ModuleInitializationLevel p_level)
         ClassDB::register_class<CResourceCount>();
         ClassDB::register_class<CResourceCountList>();
         ClassDB::register_class<ColonyResourceServer>();
+        ClassDB::register_class<CJobRole>();
+        ClassDB::register_class<CJobRoleCount>();
     }
 
     if (p_level == MODULE_INITIALIZATION_LEVEL_SERVERS)

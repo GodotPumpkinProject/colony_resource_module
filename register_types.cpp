@@ -35,23 +35,25 @@
 #include "CResourceTag.h"
 #include "CVisualDescription.h"
 #include "ResourceServer.h"
+#include "colony_colonists/ColonistServer.h"
 #include "core/object/class_db.h"
 
 //#include "colony_resourcesClass.h"
 
 void initialize_colony_resources_module(ModuleInitializationLevel p_level)
 {
-    if (p_level == MODULE_INITIALIZATION_LEVEL_CORE)
+    if (p_level == MODULE_INITIALIZATION_LEVEL_SCENE)
     {
-        ClassDB::register_class<CVisualDescription>();
-        ClassDB::register_class<CDescription>();
-        ClassDB::register_class<CResource>();
-        ClassDB::register_class<CResourceTag>();
-        ClassDB::register_class<CResourceCount>();
-        ClassDB::register_class<CResourceCountList>();
-        ClassDB::register_class<ColonyResourceServer>();
-        ClassDB::register_class<CJobRole>();
-        ClassDB::register_class<CJobRoleCount>();
+        GDREGISTER_CLASS(CVisualDescription);
+        GDREGISTER_CLASS(CDescription);
+        GDREGISTER_CLASS(CResource);
+        GDREGISTER_CLASS(CResourceTag);
+        GDREGISTER_CLASS(CResourceCount);
+        GDREGISTER_CLASS(CResourceCountList);
+        GDREGISTER_CLASS(ColonyResourceServer);
+        GDREGISTER_CLASS(CJobRole);
+        GDREGISTER_CLASS(CJobRoleCount);
+        GDREGISTER_CLASS(ColonistServer);
     }
 
     if (p_level == MODULE_INITIALIZATION_LEVEL_SERVERS)
@@ -59,6 +61,7 @@ void initialize_colony_resources_module(ModuleInitializationLevel p_level)
         resourceServer = memnew(ColonyResourceServer);
         Engine::get_singleton()->add_singleton(Engine::Singleton("GetColonyResourceServer", ColonyResourceServer::get_singleton()));
     }
+
 }
 
 void uninitialize_colony_resources_module(ModuleInitializationLevel p_level)

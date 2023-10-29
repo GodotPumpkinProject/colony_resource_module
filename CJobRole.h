@@ -1,12 +1,12 @@
 ﻿#pragma once
+#include "CVisualDescription.h"
 #include "core/io/resource.h"
-#include "core/variant/typed_array.h"
 
 
 /// \brief Godot Resource for basic jobs for the purpose of allocation.
-class CJobRole : public Resource
+class CJobRole : public CVisualDescription
 {
-    GDCLASS(CJobRole, Resource);
+    GDCLASS(CJobRole, CVisualDescription);
 
 protected:
     static void _bind_methods();
@@ -24,7 +24,7 @@ public:
 
 
 /// \brief Reference to CJobRole  with an additional count. Intended for buildings describing how many work there.
-struct CJobRoleCount : public Resource
+class CJobRoleCount : public Resource
 {
     GDCLASS(CJobRoleCount, Resource);
 
@@ -40,7 +40,7 @@ public:
 
     Ref<CJobRole> get_job() { return job; }
     
-    void set_resource(const Ref<CJobRole> r) { job = r; }
+    void set_job(const Ref<CJobRole> r) { job = r; }
 
 
     CJobRoleCount()

@@ -14,7 +14,7 @@ void CResourceCount::_bind_methods()
 {
     ClassDB::bind_method(D_METHOD("set_count", "count"), &CResourceCount::set_count);
     ClassDB::bind_method(D_METHOD("get_count"), &CResourceCount::get_count);
-    ADD_PROPERTY(PropertyInfo(Variant::INT, "count"), "set_count", "get_count");
+    ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "count"), "set_count", "get_count");
 
     ClassDB::bind_method(D_METHOD("set_resource", "resource"), &CResourceCount::set_resource);
     ClassDB::bind_method(D_METHOD("get_resource"), &CResourceCount::get_resource);

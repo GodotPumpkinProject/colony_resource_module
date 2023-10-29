@@ -15,7 +15,7 @@ void ColonyResourceServer::_bind_methods()
 
 }
 
-void ColonyResourceServer::AddResource(const Ref<CResource> resource, int count)
+void ColonyResourceServer::AddResource(const Ref<CResource> resource, float count)
 {
     if (resource.is_null()){ return; }
     
@@ -31,7 +31,7 @@ void ColonyResourceServer::AddResource(const Ref<CResource> resource, int count)
     emit_signal("resources_update");
 }
 
-void ColonyResourceServer::RemoveResource(const Ref<CResource> resource, int count)
+void ColonyResourceServer::RemoveResource(const Ref<CResource> resource, float count)
 {
     if (resource.is_null()){ return; }
     
@@ -51,7 +51,7 @@ void ColonyResourceServer::RemoveResource(const Ref<CResource> resource, int cou
     
 }
 
-int ColonyResourceServer::GetResourceCount(const Ref<CResource> resource)
+float ColonyResourceServer::GetResourceCount(const Ref<CResource> resource)
 {
     if (resource.is_null()){ return 0; }
     
@@ -113,7 +113,7 @@ Ref<CResourceCountList> ColonyResourceServer::LackingResourceQuantity(const Ref<
     {
         // If we do not have enough (positive)
         const auto lackingAmount = r->get_count() - GetResourceCount(r->get_resource()) ;
-        if (lackingAmount > 0)
+        if (lackingAmount > 0.0)
         {
             returnList->add_resource(r);
         }

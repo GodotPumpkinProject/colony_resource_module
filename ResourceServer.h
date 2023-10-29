@@ -15,7 +15,7 @@ class ColonyResourceServer : public Object
     GDCLASS(ColonyResourceServer, Object);
 
 private:
-    std::map<Ref<CResource>, int> resourceMap;
+    std::map<Ref<CResource>, float> resourceMap;
 
 protected:
     static void _bind_methods();
@@ -25,13 +25,13 @@ public:
     static ColonyResourceServer* get_singleton() { return singleton; };
 
     /// \brief Adds resource to server.  Adds key if does not exist.
-    void AddResource(const Ref<CResource> resource, int count);
+    void AddResource(const Ref<CResource> resource, float count);
 
     /// \brief Removes resource if it exists.  If resource exists and count would decrement it below 0 prints an error.
-    void RemoveResource(const Ref<CResource> resource, int count);
+    void RemoveResource(const Ref<CResource> resource, float count);
 
     /// \brief Returns count of resources.  If key does not exist returns 0.
-    int GetResourceCount(const Ref<CResource>);
+    float GetResourceCount(const Ref<CResource>);
 
     /// \brief Debug printing of each key and quantity.
     void PrintObject();

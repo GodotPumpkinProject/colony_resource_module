@@ -12,9 +12,8 @@ class CResource : public CVisualDescription
     GDCLASS(CResource, CVisualDescription);
 
     /// \brief List of tags associated with this resource.
-    TypedArray<CResourceTag> tags;
-
-    Ref<CResource> parentResource;
+    TypedArray<CResourceTag> tags = {};
+    Ref<CResource> parentResource = nullptr;
     
 protected:
     static void _bind_methods();
@@ -40,21 +39,21 @@ struct CResourceCount : public Resource
 {
     GDCLASS(CResourceCount, Resource);
 
-    Ref<CResource> resource;
-    int count = 0;
+    Ref<CResource> resource = nullptr;
+    float count = 0.0f;
 
 protected:
     static void _bind_methods();
 
 public:
-    int get_count() { return count; }
-    void set_count(const int c) { count = c; }
+    float get_count() { return count; }
+    void set_count(const float c) { count = c; }
 
     Ref<CResource> get_resource() { return resource; }
     
     void set_resource(const Ref<CResource> r) { resource = r; }
 
-    void add_count(int addCount){this->count += addCount;}
+    void add_count(float addCount){this->count += addCount;}
 
     void add_count(CResourceCount r){ this->count += r.get_count();}
     
@@ -76,7 +75,7 @@ public:
     {
     };
 
-    CResourceCount(Ref<CResource> r, int c)
+    CResourceCount(Ref<CResource> r, float c)
     {
         this->resource = r;
         this->count    = c;

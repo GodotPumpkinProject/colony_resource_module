@@ -94,7 +94,7 @@ void ColonyResourceServer::RemoveResourceList(const Ref<CResourceCountList> reso
 
 bool ColonyResourceServer::HasResourceQuantity(const Ref<CResourceCountList> resourceList)
 {
-    if (resourceList.is_null()){ return false; }
+    if (resourceList.is_null()){ return true; }
     
     for (auto r : resourceList->GetResources())
     {
